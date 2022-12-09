@@ -1,1 +1,0 @@
-// Detail-comment-list.js

@@ -1,11 +1,35 @@
 import React from "react";
+import "./detail-style.css";
+import Detail_comment_list from "../components/detail_comment_list/Detail_comment_list";
 // import { Link, useParams } from "react-router-dom";
 // import { useSelector } from "react-redux";
 
 function Detail() {
+  const data = [
+    {
+      id: 0,
+      imageUrl:
+        "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsEpyc%2FbtqPKvdyrOg%2FfMnGHWHSEknLe2TbsUD620%2Fimg.png",
+      title: "이.왜.진",
+      commets: [
+        { commentId: 0, comment: "ㅋㅋㅋ진짜 이게 왜 되냐." },
+        { commentId: 1, comment: "ㅋㅋㅋㅋㅋㅋㅋㅋ" },
+        { commentId: 2, comment: "구현 first" },
+      ],
+    },
+  ];
+
   return (
     <div>
-      <h1>디테일페이지입니다.</h1>
+      <div>
+        <h1>isWhere: 상세 보기</h1>
+      </div>
+      <div>
+        <img className="imgCard" src={data[0].imageUrl} alt="meme" />
+      </div>
+      <div>
+        <Detail_comment_list />
+      </div>
     </div>
   );
 }
