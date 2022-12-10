@@ -20,7 +20,13 @@ const DetailCommentList = () => {
   ];
 
   const CommentList = data[0].comments.map((comment) => {
-    return <DetailCommentItem />;
+    return (
+      <DetailCommentItem
+        comment={comment.comment}
+        commentId={comment.commentId}
+        key={comment.commentId}
+      />
+    );
   });
 
   return (
