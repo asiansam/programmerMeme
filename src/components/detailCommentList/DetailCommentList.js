@@ -3,23 +3,12 @@ import React from "react";
 import styled from "styled-components";
 import DetailCommentForm from "../detailCmmentForm/DetailCommentForm";
 import DetailCommentItem from "../detailCommentItem/DetailCommentItem";
+import { useSelector } from "react-redux";
 
 const DetailCommentList = () => {
-  const data = [
-    {
-      id: 0,
-      imageUrl:
-        "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsEpyc%2FbtqPKvdyrOg%2FfMnGHWHSEknLe2TbsUD620%2Fimg.png",
-      title: "내가 짠 코드.jpg",
-      comments: [
-        { commentId: 0, comment: "ㅋㅋㅋ진짜 이게 왜 되냐." },
-        { commentId: 1, comment: "ㅋㅋㅋㅋㅋㅋㅋㅋ" },
-        { commentId: 2, comment: "기능구현 first" },
-      ],
-    },
-  ];
+  const comments = useSelector((state) => state.comments.contents);
 
-  const CommentList = data[0].comments.map((comment) => {
+  const CommentList = comments[0].comments.map((comment) => {
     return (
       <DetailCommentItem
         comment={comment.comment}
@@ -31,7 +20,7 @@ const DetailCommentList = () => {
 
   return (
     <div>
-      <ContentsTitle>{data[0].title}</ContentsTitle>
+      <ContentsTitle>{comments[0].title}</ContentsTitle>
       <CommentListBox>{CommentList}</CommentListBox>
       <div>
         <DetailCommentForm />
@@ -41,7 +30,6 @@ const DetailCommentList = () => {
 };
 
 const ContentsTitle = styled.div`
-  border: 1px solid;
   width: 100%;
   height: 100%;
   padding: 10px;
@@ -56,10 +44,45 @@ const CommentListBox = styled.div`
   width: 100%;
   height: 100%;
   padding: 10px;
-  display: float;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
 
 export default DetailCommentList;
+
+// // src/App.js
+
+// import React from "react";
+// import { useState } from "react";
+// import { useSelector, useDispatch } from "react-redux";
+// import { addNumber, minusNumber } from "./redux/modules/counterSlice";
+
+// const App = () => {
+//   const [number, setNumber] = useState(0);
+//   const globalNumber = useSelector((state) => state.counter.number);
+//   const dispatch = useDispatch();
+
+//   const onChangeHandler = (event) => {
+//     const { value } = event.target;
+//     setNumber(+value);
+//   };
+//   const onClickAddNumberHandler = () => {
+//     dispatch(addNumber(number));
+//   };
+//   const onClickMinusNumberHandler = () => {
+//     dispatch(minusNumber(number));
+//   };
+//   console.log(number);
+//   return (
+//     <div>
+//       {globalNumber}
+//       <input type="number" onChange={onChangeHandler} />
+//       <button onClick={onClickAddNumberHandler}>더하기</button>
+//       <button onClick={onClickMinusNumberHandler}>빼기</button>
+//     </div>
+//   );
+// };
+
+// export default App;

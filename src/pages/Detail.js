@@ -2,23 +2,12 @@ import React from "react";
 import "./detail-style.css";
 import DetailCommentList from "../components/detailCommentList/DetailCommentList";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 // import { Link, useParams } from "react-router-dom";
 // import { useSelector } from "react-redux";
 
 function Detail() {
-  const data = [
-    {
-      id: 0,
-      imageUrl:
-        "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbsEpyc%2FbtqPKvdyrOg%2FfMnGHWHSEknLe2TbsUD620%2Fimg.png",
-      title: "이.왜.진",
-      commets: [
-        { commentId: 0, comment: "ㅋㅋㅋ진짜 이게 왜 되냐." },
-        { commentId: 1, comment: "ㅋㅋㅋㅋㅋㅋㅋㅋ" },
-        { commentId: 2, comment: "구현 first" },
-      ],
-    },
-  ];
+  const comments = useSelector((state) => state.comments.contents);
 
   return (
     <DetailBox>
@@ -27,7 +16,7 @@ function Detail() {
       </TitleBox>
       <ContentsBox>
         <ImageBox>
-          <img className="imgCard" src={data[0].imageUrl} alt="meme" />
+          <img className="imgCard" src={comments[0].imageUrl} alt="meme" />
         </ImageBox>
         <CommentBox>
           <DetailCommentList />
