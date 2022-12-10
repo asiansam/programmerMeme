@@ -1,4 +1,3 @@
-// Detail-comment-form.js
 import React from "react";
 import styled from "styled-components";
 

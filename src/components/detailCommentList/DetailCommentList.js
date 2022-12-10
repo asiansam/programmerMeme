@@ -1,7 +1,8 @@
 // Detail-comment-list.js
 import React from "react";
 import styled from "styled-components";
-import Detail_comment_form from "../detailCmmentForm/DetailCommentForm";
+import DetailCommentForm from "../detailCmmentForm/DetailCommentForm";
+import DetailCommentItem from "../detailCommentItem/DetailCommentItem";
 
 const DetailCommentList = () => {
   const data = [
@@ -18,16 +19,16 @@ const DetailCommentList = () => {
     },
   ];
 
+  const CommentList = data[0].comments.map((comment) => {
+    return <DetailCommentItem />;
+  });
+
   return (
     <div>
       <ContentsTitle>{data[0].title}</ContentsTitle>
-      <CommentListBox>
-        {data[0].comments.map((comment) => {
-          return comment.comment;
-        })}
-      </CommentListBox>
+      <CommentListBox>{CommentList}</CommentListBox>
       <div>
-        <Detail_comment_form />
+        <DetailCommentForm />
       </div>
     </div>
   );

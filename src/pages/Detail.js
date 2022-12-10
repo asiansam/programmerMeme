@@ -1,6 +1,6 @@
 import React from "react";
 import "./detail-style.css";
-import DetailCommentList from "../components/detailCommentList/Detail_comment_list";
+import DetailCommentList from "../components/detailCommentList/DetailCommentList";
 import styled from "styled-components";
 // import { Link, useParams } from "react-router-dom";
 // import { useSelector } from "react-redux";
