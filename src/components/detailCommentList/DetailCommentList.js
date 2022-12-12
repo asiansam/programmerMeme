@@ -6,22 +6,22 @@ import DetailCommentItem from "../detailCommentItem/DetailCommentItem";
 import { useSelector } from "react-redux";
 
 const DetailCommentList = () => {
-  const comments = useSelector((state) => state.comments.contents);
+  // const comments = useSelector((state) => state.comments.contents);
 
-  const CommentList = comments[0].comments.map((comment) => {
-    return (
-      <DetailCommentItem
-        comment={comment.comment}
-        commentId={comment.commentId}
-        key={comment.commentId}
-      />
-    );
-  });
+  // const CommentList = comments.comments.map((comment) => {
+  //   return (
+  //     <DetailCommentItem
+  //       comment={comment.comment}
+  //       commentId={comment.commentId}
+  //       key={comment.commentId}
+  //     />
+  //   );
+  // });
 
   return (
     <div>
-      <ContentsTitle>{comments[0].title}</ContentsTitle>
-      <CommentListBox>{CommentList}</CommentListBox>
+      {/* <ContentsTitle>{comments[0].title}</ContentsTitle> */}
+      {/* <CommentListBox>{CommentList}</CommentListBox> */}
       <div>
         <DetailCommentForm />
       </div>
