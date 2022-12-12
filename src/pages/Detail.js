@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
+import { useParams } from "react-router-dom";
+// import axios from "axios";
 import "./detail-style.css";
 import DetailCommentList from "../components/detailCommentList/DetailCommentList";
 import styled from "styled-components";
 import { __getContents } from "../redux/modules/detailMod";
-// import { useSelector } from "react-redux";
-// import { Link, useParams } from "react-router-dom";
 
 const Detail = () => {
   const dispatch = useDispatch();
@@ -19,7 +18,12 @@ const Detail = () => {
     }
   }, [dispatch]);
 
-  const { isLoading, error, memes } = useSelector((state) => state.contents);
+  const { memes } = useSelector((state) => state.contents);
+
+  const param = useParams();
+
+  const contents = memes.find((meme) => meme.id === parseInt(1)); // id 주소만 넣어주면 됩니다.
+  console.log(contents);
 
   try {
     return (
@@ -29,10 +33,10 @@ const Detail = () => {
         </TitleBox>
         <ContentsBox>
           <ImageBox>
-            <img className="imgCard" src={memes[0].url} alt="meme" />
+            <img className="imgCard" src={contents.url} alt="meme" />
           </ImageBox>
           <CommentBox>
-            <DetailCommentList />
+            <DetailCommentList contents={contents} />
           </CommentBox>
         </ContentsBox>
       </DetailBox>
@@ -204,38 +208,3 @@ export default Detail;
 // };
 
 // export default App;
-
-// if (isLoading) {
-//   return <div>로딩 중....</div>;
-// }
-
-// if (error) {
-//   return <div>{error.message}</div>;
-// }
-
-// const comments = useSelector((state) => state.comments.contents);
-
-// const [contents, setContents] = useState(null);
-
-// //axios를 통해서 get 요청을 하는 함수를 생성합니다.
-// // 비동기처리를 해야하므로 async/await 구문을 통해서 처리합니다.
-// const fetchContents = async () => {
-//   const { data } = await axios.get("http://localhost:3001/memes");
-//   setContents(data); // 서버로부터 fetching한 데이터를 useState의 state로 set 합니다.
-// };
-
-// // 생성한 함수를 컴포넌트가 mount 됐을 떄 실행하기 위해 useEffect를 사용합니다.
-// useEffect(() => {
-//   // effect 구문에 생성한 함수를 넣어 실행합니다.
-//   fetchContents();
-// }, []);
-
-// console.log(contents[0]);
-
-// // data fetching이 정상적으로 되었는지 콘솔을 통해 확인합니다.
-// console.log(
-//   contents
-//   // contents.filter ((content) => {
-//   //   return content.id === 1;
-//   // }).comments
-// );

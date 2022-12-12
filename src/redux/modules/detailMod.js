@@ -29,14 +29,12 @@ const detailMod = createSlice({
   name: "contents",
   initialState,
   reducers: {
-    postComment: (state, action) => {
-      state.number = state.number + action.payload;
-    },
-
-    deleteComment: (state, action) => {
-      state.number = state.number - action.payload;
-    },
-
+    // postComment: (state, action) => {
+    //   state.number = state.number + action.payload;
+    // },
+    // deleteComment: (state, action) => {
+    //   state.number = state.number - action.payload;
+    // },
     // editComment: (state, action) => {
     //   state;
     // },
