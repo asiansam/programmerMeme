@@ -5,10 +5,8 @@ import DetailCommentForm from "../detailCmmentForm/DetailCommentForm";
 import DetailCommentItem from "../detailCommentItem/DetailCommentItem";
 import { useSelector } from "react-redux";
 
-const DetailCommentList = (contents) => {
-  console.log(contents.contents);
-
-  const CommentList = contents.contents.comments.map((comment) => {
+const DetailCommentList = ({ meme }) => {
+  const CommentList = meme.comments.map((comment) => {
     return (
       <DetailCommentItem
         comment={comment.comment}
@@ -20,7 +18,7 @@ const DetailCommentList = (contents) => {
 
   return (
     <div>
-      <ContentsTitle>{contents.contents.title}</ContentsTitle>
+      <ContentsTitle>{meme.title}</ContentsTitle>
       <CommentListBox>{CommentList}</CommentListBox>
       <div>
         <DetailCommentForm />

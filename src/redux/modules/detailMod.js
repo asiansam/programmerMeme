@@ -1,11 +1,13 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-// import { createAction, handleActions } from "redux-actions";
+import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
 import axios from "axios";
-// import { pender } from "redux-pender";
-// import * as WebAPI from "../lib/web-api";
 
 const initialState = {
-  memes: [],
+  meme: {
+    id: "",
+    title: "",
+    url: "",
+    comments: [],
+  },
   isLoading: false,
   error: null,
 };
@@ -14,13 +16,28 @@ export const __getContents = createAsyncThunk(
   "getContents",
   async (payload, thunkAPI) => {
     try {
-      const customAxios = axios.create({});
-      const data = await customAxios.get("http://localhost:3001/memes");
-      console.log(data.data);
+      const data = await axios.get(`http://localhost:3001/memes/${payload}`);
+      // console.log(data.data);
+      // console.log(payload);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       console.log(error);
       return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const __deleteComment = createAsyncThunk(
+  "deleteComment",
+  async (payload, thunkAPI) => {
+    try {
+      // const data = await axios.patch(`http://localhost:3001/memes/${payload.id}`);
+      // console.log(data);
+      console.log(payload);
+      // return thunkAPI.fulfillWithValue(data.data);
+    } catch (error) {
+      console.log(error);
+      // return thunkAPI.rejectWithValue(error);
     }
   }
 );
@@ -32,8 +49,30 @@ const detailMod = createSlice({
     // postComment: (state, action) => {
     //   state.number = state.number + action.payload;
     // },
+    // 리듀서 안에서는 비동기 요청을 쓰지 않아야 한다. 왜일까?
     // deleteComment: (state, action) => {
-    //   state.number = state.number - action.payload;
+    //   console.log(action.payload.commentId);
+    //   console.log();
+    //   console.log(current(state.meme.comments));
+    //   // try {
+    //   state.meme = {
+    //     ...state.meme,
+    //     comments: state.meme.comments.filter(
+    //       (comment) => comment.commentId !== action.payload.commentId
+    //     ),
+    //   };
+    //   const data = axios
+    //     .patch(`http://localhost:3001/memes/${action.payload.id}`, state.meme)
+    //     .then((response) => {
+    //       console.log(data.data);
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //     });
+    // },
+    // } catch (error) {
+    //     console.log(error);
+    //   }
     // },
     // editComment: (state, action) => {
     //   state;
@@ -45,7 +84,7 @@ const detailMod = createSlice({
     },
     [__getContents.fulfilled]: (state, action) => {
       state.isLoading = false; // 네트워크 요청이 끝났으니, false로 변경합니다.
-      state.memes = action.payload; // Store에 있는 todos에 서버에서 가져온 todos를 넣습니다.
+      state.meme = action.payload; // Store에 있는 todos에 서버에서 가져온 todos를 넣습니다.
     },
     [__getContents.rejected]: (state, action) => {
       state.isLoading = false; // 에러가 발생했지만, 네트워크 요청이 끝났으니, false로 변경합니다.

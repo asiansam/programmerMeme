@@ -10,40 +10,35 @@ import { __getContents } from "../redux/modules/detailMod";
 const Detail = () => {
   const dispatch = useDispatch();
 
+  const { meme } = useSelector((state) => state.contents);
+
+  const param = useParams();
+
+  // const contents = meme.find((meme) => meme.id === parseInt(param.id)); // id 주소만 넣어주면 됩니다.
+
   useEffect(() => {
     try {
-      dispatch(__getContents());
+      dispatch(__getContents(param.id));
     } catch (error) {
       console.log(error);
     }
   }, [dispatch]);
 
-  const { memes } = useSelector((state) => state.contents);
-
-  const param = useParams();
-
-  const contents = memes.find((meme) => meme.id === parseInt(1)); // id 주소만 넣어주면 됩니다.
-  console.log(contents);
-
-  try {
-    return (
-      <DetailBox>
-        <TitleBox>
-          <h1> &#123;isWhere: 상세 보기 &#125;</h1>
-        </TitleBox>
-        <ContentsBox>
-          <ImageBox>
-            <img className="imgCard" src={contents.url} alt="meme" />
-          </ImageBox>
-          <CommentBox>
-            <DetailCommentList contents={contents} />
-          </CommentBox>
-        </ContentsBox>
-      </DetailBox>
-    );
-  } catch (error) {
-    console.log(error);
-  }
+  return (
+    <DetailBox>
+      <TitleBox>
+        <h1> &#123;isWhere: 상세 보기 &#125;</h1>
+      </TitleBox>
+      <ContentsBox>
+        <ImageBox>
+          <img className="imgCard" src={meme.url} alt="meme" />
+        </ImageBox>
+        <CommentBox>
+          <DetailCommentList meme={meme} />
+        </CommentBox>
+      </ContentsBox>
+    </DetailBox>
+  );
 };
 
 const DetailBox = styled.div`

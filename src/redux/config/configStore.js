@@ -1,8 +1,5 @@
 // src/redux/modules/config/configStore.js
-import { applyMiddleware } from "redux";
-import { configureStore } from "@reduxjs/toolkit";
-import penderMiddleware from "redux-pender";
-// import reducers from "./modules";
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 /**
  * import 해온 것은 slice.reducer 입니다.
  */
@@ -10,6 +7,9 @@ import contents from "../modules/detailMod";
 
 const store = configureStore({
   reducer: { contents: contents },
+  // middleware: getDefaultMiddleware({
+  //   serializableCheck: false,
+  // }),
 });
 
 /**
