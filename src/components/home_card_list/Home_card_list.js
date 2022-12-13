@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 
 const Home_card_list = () => {
   return <div>카드리스트입니다.</div>;
