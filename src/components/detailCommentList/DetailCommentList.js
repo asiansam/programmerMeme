@@ -3,9 +3,9 @@ import React from "react";
 import styled from "styled-components";
 import DetailCommentForm from "../detailCmmentForm/DetailCommentForm";
 import DetailCommentItem from "../detailCommentItem/DetailCommentItem";
-import { useSelector } from "react-redux";
 
 const DetailCommentList = ({ meme }) => {
+  // list에서 같은 component를 반복사용하도록 하는 메소드 map을 사용
   const CommentList = meme.comments.map((comment) => {
     return (
       <DetailCommentItem
@@ -18,7 +18,7 @@ const DetailCommentList = ({ meme }) => {
 
   return (
     <div>
-      <ContentsTitle>{meme.title}</ContentsTitle>
+      <ContentsTitle>{meme.title /*props로 받아온 data를 사용*/}</ContentsTitle>
       <CommentListBox>{CommentList}</CommentListBox>
       <div>
         <DetailCommentForm />
@@ -38,7 +38,6 @@ const ContentsTitle = styled.div`
 `;
 
 const CommentListBox = styled.div`
-  border: 1px solid;
   width: 100%;
   height: 100%;
   padding: 10px;
@@ -49,38 +48,3 @@ const CommentListBox = styled.div`
 `;
 
 export default DetailCommentList;
-
-// // src/App.js
-
-// import React from "react";
-// import { useState } from "react";
-// import { useSelector, useDispatch } from "react-redux";
-// import { addNumber, minusNumber } from "./redux/modules/counterSlice";
-
-// const App = () => {
-//   const [number, setNumber] = useState(0);
-//   const globalNumber = useSelector((state) => state.counter.number);
-//   const dispatch = useDispatch();
-
-//   const onChangeHandler = (event) => {
-//     const { value } = event.target;
-//     setNumber(+value);
-//   };
-//   const onClickAddNumberHandler = () => {
-//     dispatch(addNumber(number));
-//   };
-//   const onClickMinusNumberHandler = () => {
-//     dispatch(minusNumber(number));
-//   };
-//   console.log(number);
-//   return (
-//     <div>
-//       {globalNumber}
-//       <input type="number" onChange={onChangeHandler} />
-//       <button onClick={onClickAddNumberHandler}>더하기</button>
-//       <button onClick={onClickMinusNumberHandler}>빼기</button>
-//     </div>
-//   );
-// };
-
-// export default App;
