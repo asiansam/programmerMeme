@@ -5,7 +5,7 @@ import Home_input_form from "../components/home_input_form/Home_input_form";
 
 const Home = () => {
   return (
-    <div>
+    <Homebackground>
       <Inputform>
         <InputBox>
           <Home_input_form />
@@ -16,23 +16,29 @@ const Home = () => {
           <Home_card_list />
         </Cardlist>
       </Cardbox>
-    </div>
+    </Homebackground>
   );
 };
+
+const Homebackground = styled.div`
+  background-color: #aca8a8;
+`;
 
 const Inputform = styled.div`
   width: 100%;
   height: 100%;
-  border: solid black;
+
   display: flex;
   justify-content: center;
 `;
 const InputBox = styled.div`
-  width: 50%;
-  height: 100px;
-  border: solid black;
+  width: 60%;
+  height: 150px;
+
   display: flex;
+  flex-wrap: wrap; /*수직 정렬*/
   align-items: center;
+  justify-content: center;
 `;
 const Cardlist = styled.div`
   width: 90%;

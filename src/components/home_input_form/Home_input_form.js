@@ -1,7 +1,112 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+import { __getmemes } from "../../redux/modules/homeMod";
+import { useDispatch } from "react-redux";
+
+import { __memeAdd } from "../../redux/modules/homeMod";
+import axios from "axios";
+import { memo } from "react";
 
 const Home_input_form = () => {
-  return <div>인풋폼입니다.</div>;
+  const fetchmemes = async () => {
+    const { data } = await axios.get("http://localhost:3001/memes");
+    setMemes(data);
+  };
+  const [memes, setMemes] = useState(null);
+  console.log(memes);
+  const [title, setTitle] = useState("", []);
+  const [url, setUrl] = useState("", []);
+  const dispatch = useDispatch();
+
+  const addmeme = (e) => {
+    e.preventDefault();
+    if (title === "") return; // 아무것도 입력하지 않았을 때 dispatch 하지 않음
+
+    dispatch(
+      __memeAdd({
+        id: memes.length + 1,
+        title: title,
+        url: url,
+        comments: [
+          {
+            commentId: 0,
+            comment: "댓글을 달아요1",
+          },
+        ],
+      })
+    );
+  };
+
+  useEffect(() => {
+    dispatch(__getmemes(memes));
+  }, [dispatch]);
+  useEffect(() => {
+    fetchmemes();
+  }, []);
+  return (
+    <Container>
+      <p>isWhere: 상세 보기</p>
+      <Boxform>
+        <Boxwrap>
+          <Titlebox
+            type="text"
+            placeholder="제목을 입력해 주세요"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <Urlbox
+            type="text"
+            placeholder="IMAGE URL을 입력해 주세요"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+          ></Urlbox>
+        </Boxwrap>
+        <Addbutton onClick={addmeme}>추가하기</Addbutton>
+      </Boxform>
+    </Container>
+  );
 };
 
-export default Home_input_form;
+const Container = styled.div`
+  height: 150px;
+  width: 400px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+const Titlebox = styled.input`
+  display: flex;
+  width: 170px;
+  height: 25px;
+`;
+const Urlbox = styled.input`
+  width: 300px;
+  height: 25px;
+  margin-top: 25px;
+  display: flex;
+`;
+const Boxwrap = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  width: 200px;
+  align-items: center;
+  justify-content: center;
+  margin-left: 120px;
+`;
+
+const Addbutton = styled.button`
+  width: 110px;
+  height: 80px;
+  display: block;
+  float: right;
+  margin-left: 70px;
+  margin-top: 10px;
+`;
+const Boxform = styled.form`
+  display: flex;
+`;
+
+export default memo(Home_input_form);
