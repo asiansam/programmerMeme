@@ -4,18 +4,21 @@ import { __getmemes } from "../../redux/modules/homeMod";
 import { useDispatch } from "react-redux";
 
 import { __memeAdd } from "../../redux/modules/homeMod";
-import axios from "axios";
+
 import { memo } from "react";
 
 const Home_input_form = () => {
-  const fetchmemes = async () => {
-    const { data } = await axios.get("http://localhost:3001/memes");
-    setMemes(data);
-  };
-  const [memes, setMemes] = useState(null);
+  //const fetchmemes = async () => {
+  //  const { data } = await axios.get("http://localhost:3001/memes");
+  //  setMemes(data);
+  // };
+
+  const [memes, setMemes] = useState();
   console.log(memes);
   const [title, setTitle] = useState("", []);
+
   const [url, setUrl] = useState("", []);
+
   const dispatch = useDispatch();
 
   const addmeme = (e) => {
@@ -34,15 +37,23 @@ const Home_input_form = () => {
           },
         ],
       })
-    );
+    ).then(() => {
+      dispatch(__getmemes()).then((res) => {
+        setMemes(res);
+      });
+    });
   };
 
   useEffect(() => {
-    dispatch(__getmemes(memes));
+    dispatch(__getmemes()).then((res) => {
+      setMemes(res);
+    });
   }, [dispatch]);
-  useEffect(() => {
-    fetchmemes();
-  }, []);
+
+  //useEffect(() => {
+  //  fetchmemes();
+  // }, []);
+
   return (
     <Container>
       <p>isWhere: 상세 보기</p>
@@ -52,13 +63,13 @@ const Home_input_form = () => {
             type="text"
             placeholder="제목을 입력해 주세요"
             value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={(e) => setTitle(e.target.value, [])}
           />
           <Urlbox
             type="text"
             placeholder="IMAGE URL을 입력해 주세요"
             value={url}
-            onChange={(e) => setUrl(e.target.value)}
+            onChange={(e) => setUrl(e.target.value, [])}
           ></Urlbox>
         </Boxwrap>
         <Addbutton onClick={addmeme}>추가하기</Addbutton>
