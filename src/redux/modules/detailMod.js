@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
@@ -52,7 +52,7 @@ export const __deleteComment = createAsyncThunk(
 );
 
 export const __editComment = createAsyncThunk(
-  "deleteComment",
+  "editComment",
   async (payload, thunkAPI) => {
     try {
       const data = await axios.patch(

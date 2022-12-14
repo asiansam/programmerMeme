@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-// import axios from "axios";
 import "./detail-style.css";
 import DetailCommentList from "../components/detailCommentList/DetailCommentList";
 import styled from "styled-components";
@@ -19,7 +18,7 @@ const Detail = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [dispatch]);
+  }, [dispatch, param.id]);
 
   // axios로 불러온 객체를 usaSelector로 불러온다.
   const { meme } = useSelector((state) => state.contents);
