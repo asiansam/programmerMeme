@@ -15,7 +15,6 @@ export const __getmemes = createAsyncThunk(
       const data = await axios.get(
         "https://deserted-workable-olive.glitch.me/memes"
       );
-      console.log(data.data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       console.log(error);
@@ -32,7 +31,6 @@ export const __memeAdd = createAsyncThunk(
         "https://deserted-workable-olive.glitch.me/memes",
         payload
       );
-      console.log(data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       console.log(error);
@@ -48,7 +46,6 @@ export const __memeDelete = createAsyncThunk(
       const data = await axios.delete(
         `https://deserted-workable-olive.glitch.me/memes/${payload}`
       );
-      console.log(data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       console.log(error);
@@ -65,7 +62,6 @@ export const __memeUpdate = createAsyncThunk(
         `https://deserted-workable-olive.glitch.me/memes/${payload.id}`,
         payload.edit
       );
-      console.log(payload);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       console.log(error);

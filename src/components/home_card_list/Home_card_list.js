@@ -13,7 +13,6 @@ import { async } from "q";
 
 const Home_card_list = () => {
   const carddata = useSelector((state) => state.memeReducer.memes);
-  console.log(carddata);
   const dispatch = useDispatch();
 
   const deleteMeme = (id) => {

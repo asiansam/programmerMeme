@@ -17,7 +17,7 @@ const DetailCommentItem = (comment) => {
     } catch (error) {
       console.log(error);
     }
-  }, [dispatch]);
+  }, [dispatch, param.id]);
 
   const { meme } = useSelector((state) => state.contents);
 
