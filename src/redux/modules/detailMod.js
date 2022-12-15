@@ -74,11 +74,10 @@ export const __submitComment = createAsyncThunk(
     try {
       //axios에 의해서 네트워크 요청을 시작한다.
       const data = await axios.patch(
-        `http://localhost:3001/memes/${payload.id}`,
+        `https://deserted-workable-olive.glitch.me/memes/${payload.id}`,
         payload.data
         //업데이트할 데이터
       );
-      console.log(data);
       //axios는 promise 객체를 반환한다. 따라서 data는 promise를 반환한다.
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
