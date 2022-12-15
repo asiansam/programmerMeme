@@ -9,6 +9,7 @@ import {
   __memeDelete,
   __memeUpdate,
 } from "../../redux/modules/homeMod";
+import { async } from "q";
 
 const Home_card_list = () => {
   const carddata = useSelector((state) => state.memeReducer.memes);
@@ -20,15 +21,15 @@ const Home_card_list = () => {
     dispatch(__getmemes());
   };
 
-  const editCard = (meme, id) => {
+  const editCard = async (meme, id) => {
     const editing = prompt("타이틀 수정!", "");
     const edit = {
       ...meme,
       title: editing,
     };
 
-    dispatch(__memeUpdate({ id, edit }));
-    dispatch(__getmemes());
+    await dispatch(__memeUpdate({ id, edit }));
+    await dispatch(__getmemes());
   };
 
   return (
