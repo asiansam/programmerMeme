@@ -6,6 +6,7 @@ import {
   __getComment,
   __submitComment,
 } from "../../redux/modules/postCommentForm";
+import { memo } from "react";
 
 const DetailCommentForm = () => {
   const [contents, setContents] = useState(null);
@@ -81,4 +82,4 @@ const InputForm = styled.form`
   align-items: center;
 `;
 
-export default DetailCommentForm;
+export default memo(DetailCommentForm);

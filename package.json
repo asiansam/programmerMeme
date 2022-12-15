@@ -7,13 +7,15 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
+    "global": "^4.4.0",
+    "http-proxy-middleware": "^2.0.6",
     "json-server": "^0.17.1",
     "react": "^18.2.0",
     "react-app": "^1.1.2",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.5",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "redux": "^4.2.0",
     "redux-actions": "^2.6.5",
     "redux-pender": "^2.0.12",
@@ -48,6 +50,5 @@
   "devDependencies": {
     "axios": "^1.2.1",
     "cross-env": "^7.0.3"
-  },
-  "proxy": "http://localhost:3001"
+  }
 }
