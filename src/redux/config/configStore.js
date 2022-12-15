@@ -7,7 +7,7 @@ import contents from "../modules/detailMod";
 import postComment from "../modules/postCommentForm";
 
 const store = configureStore({
-  reducer: { contents: contents, postComment: postComment },
+  reducer: { contents: contents },
 });
 
 export default store;

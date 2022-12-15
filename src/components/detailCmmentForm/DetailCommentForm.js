@@ -2,28 +2,21 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import {
-  __getComment,
-  __submitComment,
-} from "../../redux/modules/postCommentForm";
+import { __submitComment } from "../../redux/modules/detailMod";
 
 const DetailCommentForm = () => {
   const [contents, setContents] = useState(null);
   const [comment, setComment] = useState("");
 
-  const meme = useSelector((state) => state.postComment.meme);
+  const meme = useSelector((state) => state.contents.meme);
   const param = useParams();
   // id 값은 param에서 useParams를 이용해서 각 컴포넌트 안에서 조회할 수 있다.
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(__getComment(param.id));
-  }, [dispatch, param.id]);
-
   const onSubmitCommentHandler = (meme, comment) => {
     const copyMeme = [...meme.comments];
-    const lastCommentId = copyMeme[copyMeme.length - 1].commentId;
-    copyMeme.push({ commentId: lastCommentId + 1, comment: comment });
+
+    copyMeme.push({ commentId: Date.now(), comment: comment });
     const newMemeObj = {
       ...meme,
       comments: copyMeme,

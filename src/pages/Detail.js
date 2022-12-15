@@ -25,7 +25,6 @@ const Detail = () => {
   // axios로 불러온 객체를 usaSelector로 불러온다.
   const meme = useSelector((state) => state.contents.meme);
 
-  // console.log(meme);
   return (
     <DetailBox>
       <TitleBox>
