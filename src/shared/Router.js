@@ -9,7 +9,7 @@ const Router = () => {
     <BrowserRouter>
       <Layout>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home />} />\
           <Route
             path="/:id" /* test를 위해서 detail로 설정해두었습니다. 나중에 :id로 바꿀예정입니다. */
             element={<Detail />}
