@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import "./detail-style.css";
@@ -11,6 +11,8 @@ const Detail = () => {
   const dispatch = useDispatch();
   const param = useParams();
 
+  // const [newMeme, setNewMeme] = useState("");
+
   useEffect(() => {
     try {
       // getContents에 path id값을 payload로 넘겨준다.
@@ -18,11 +20,12 @@ const Detail = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [dispatch, param.id]);
+  }, []);
 
   // axios로 불러온 객체를 usaSelector로 불러온다.
-  const { meme } = useSelector((state) => state.contents);
+  const meme = useSelector((state) => state.contents.meme);
 
+  // console.log(meme);
   return (
     <DetailBox>
       <TitleBox>
@@ -34,8 +37,9 @@ const Detail = () => {
         </ImageBox>
         <CommentBox>
           <DetailCommentList
-            meme={
-              meme
+            title={meme.title}
+            comments={
+              meme.comments
             } /*list는 전역상태관리할 필요가 없을것 같아서 props로 내려주었다.*/
           />
         </CommentBox>

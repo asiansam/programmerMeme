@@ -20,7 +20,6 @@ export const __getContents = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const data = await axios.get(`http://localhost:3001/memes/${payload}`);
-      console.log(data.data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       console.log(error);
@@ -42,7 +41,6 @@ export const __deleteComment = createAsyncThunk(
         `http://localhost:3001/memes/${payload.paramId}`,
         payload.newMemeObj
       );
-      console.log(data.data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       console.log(error);
@@ -59,7 +57,6 @@ export const __editComment = createAsyncThunk(
         `http://localhost:3001/memes/${payload.paramId}`,
         payload.newMemeObj2
       );
-      console.log(data.data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       console.log(error);

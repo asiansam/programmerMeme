@@ -22,7 +22,6 @@ export const __getComment = createAsyncThunk(
     try {
       //axios에 의해서 네트워크 요청을 시작한다.
       const data = await axios.get(`http://localhost:3001/memes/${payload}`);
-      console.log(data);
       //axios는 promise 객체를 반환한다. 따라서 data는 promise를 반환한다.
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
@@ -36,7 +35,6 @@ export const __getComment = createAsyncThunk(
 export const __submitComment = createAsyncThunk(
   "submitComment", //Action Value
   async (payload, thunkAPI) => {
-    // console.log(payload);
     try {
       //axios에 의해서 네트워크 요청을 시작한다.
       const data = await axios.patch(
@@ -77,7 +75,8 @@ export const postCommentForm = createSlice({
     },
     [__submitComment.fulfilled]: (state, action) => {
       state.isLoading = false; // 네트워크 요청이 끝났으니, false로 변경합니다.
-      state.meme = action.payload; // Store에 있는 meme에 서버에서 가져온 meme를 넣습니다.
+      state.meme = { ...action.payload }; // Store에 있는 meme에 서버에서 가져온 meme를 넣습니다.
+      console.log(action.payload);
     },
     [__submitComment.rejected]: (state, action) => {
       state.isLoading = false; // 에러가 발생했지만, 네트워크 요청이 끝났으니, false로 변경합니다.
