@@ -1,7 +1,18 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios';
+
 // memes.title
 // memes.url
+// {
+//     id: 1,
+//     title: "",
+//     url: ""
+// }
+const initialState = {
+    cards: [],
+    isLoading: false,
+    error: null
+};
 
 export const __getCardsList = createAsyncThunk(
     // 첫번째 인자 : action value
@@ -10,7 +21,7 @@ export const __getCardsList = createAsyncThunk(
     async (payload, thunkAPI) => {
         try {
             const data = await axios.get("http://localhost:3001/memes");
-            console.log('data', data)
+            console.log('data', data.data)
             //data.data호출 성공
             return thunkAPI.fulfillWithValue(data.data);
         } catch (error) {
@@ -23,12 +34,25 @@ export const __getCardsList = createAsyncThunk(
     }
 )
 
+// export const __delcardsList = createAsyncThunk(
+//     "delcardslist",
+//     async (payload, thunkAPI) => {
+//         try {
+//             const delcarddata = await axios.delete("http://localhost:3001/memes/id");
+//             console.log('delcarddata', delcarddata)
+//             return thunkAPI.fulfillWithValue(delcarddata);
+//         } catch (error) {
+//             console.log(error);
+//             return thunkAPI.rejectWithValue(error);
+//         }
 
-const initialState = {
-    cards: [],
-    isLoading: false,
-    error: null
-};
+//     }
+// )
+
+
+
+
+
 
 
 // 수정, 삭제 ++ map 구현
@@ -55,11 +79,13 @@ export const cardsSlice = createSlice({
         //pending, fulfilled, rejected 일때 작동할 리듀서 
         [__getCardsList.pending]: (state) => {
             state.isLoading = true; // 네트워크 요청이 시작되면 로딩상태를 true로 변경합니다.
+
         },
         [__getCardsList.fulfilled]: (state, action) => {
             state.isLoading = false; // 네트워크 요청이 끝났으니, false로 변경합니다.
             // state.cards = action.payload; // Store에 있는 todos에 서버에서 가져온 todos를 넣습니다.
-            state.cards = [...state.data, action.payload]
+            state.cards = action.payload
+
         },
         [__getCardsList.rejected]: (state, action) => {
             state.isLoading = false; // 에러가 발생했지만, 네트워크 요청이 끝났으니, false로 변경합니다.
@@ -69,9 +95,10 @@ export const cardsSlice = createSlice({
 });
 
 
-// 액션크리에이터는 컴포넌트에서 사용하기 위해 export 하고
-export const { addNumber, minusNumber } = cardsSlice.actions;
-// reducer 는 configStore에 등록하기 위해 export default 합니다.
+
+export const { } = cardsSlice.actions;
+
 export default cardsSlice.reducer;
+
 
 
