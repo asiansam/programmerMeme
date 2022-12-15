@@ -27,14 +27,12 @@ const Homebackground = styled.div`
 const Inputform = styled.div`
   width: 100%;
   height: 100%;
-
   display: flex;
   justify-content: center;
 `;
 const InputBox = styled.div`
   width: 60%;
   height: 150px;
-
   display: flex;
   flex-wrap: wrap; /*수직 정렬*/
   align-items: center;
@@ -43,12 +41,10 @@ const InputBox = styled.div`
 const Cardlist = styled.div`
   width: 90%;
   height: 90%;
-  border: solid black;
 `;
 const Cardbox = styled.div`
   width: 100%;
   height: 100%;
-  border: solid black;
   display: flex;
   justify-content: center;
 `;

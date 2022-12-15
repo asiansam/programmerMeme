@@ -13,8 +13,8 @@ const Home_input_form = () => {
   //  setMemes(data);
   // };
 
-  const [memes, setMemes] = useState();
-  console.log(memes);
+  const [memes, setMemes] = useState("", []);
+
   const [title, setTitle] = useState("", []);
 
   const [url, setUrl] = useState("", []);
