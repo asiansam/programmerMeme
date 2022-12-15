@@ -1,19 +1,37 @@
 {
-  "posts": [
+  "memes": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "id": 4,
+      "title": "ㅁㄴㅇㄴㅁㅇㅁㄴㅇ",
+      "url": "https://www.lifewire.com/thmb/K0oF6bk8jsXRJFUFma5pNo7xjyc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Goalfor2020FunnyMeme-04eadff55a17489a85453238481fe36e.jpg",
+      "comments": [
+        {
+          "commentId": 0,
+          "comment": "댓글을 달아요1"
+        }
+      ]
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "id": 5,
+      "title": "ㅁㄴㅇㄴㅁㅇㅁㄴㅇ",
+      "url": "ㅁㅁ",
+      "comments": [
+        {
+          "commentId": 0,
+          "comment": "댓글을 달아요1"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "ㅁㅁㅁ",
+      "url": "ㅁㅁㅁ",
+      "comments": [
+        {
+          "commentId": 0,
+          "comment": "댓글을 달아요1"
+        }
+      ]
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }
