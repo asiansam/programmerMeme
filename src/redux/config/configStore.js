@@ -6,7 +6,6 @@ import postComment from "../modules/postCommentForm";
 const store = configureStore({
   reducer: {
     contents: contents,
-    postComment: postComment,
     memeReducer: memeReducer,
   },
 });
