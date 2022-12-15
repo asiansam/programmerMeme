@@ -12,7 +12,9 @@ export const __getmemes = createAsyncThunk(
   "memes",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.get("http://localhost:3001/memes");
+      const data = await axios.get(
+        "https://deserted-workable-olive.glitch.me/memes"
+      );
       console.log(data.data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
@@ -26,7 +28,10 @@ export const __memeAdd = createAsyncThunk(
   "memeAdd",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.post("http://localhost:3001/memes", payload);
+      const data = await axios.post(
+        "https://deserted-workable-olive.glitch.me/memes",
+        payload
+      );
       console.log(data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
@@ -40,7 +45,9 @@ export const __memeDelete = createAsyncThunk(
   "memeDelete",
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.delete(`http://localhost:3001/memes/${payload}`);
+      const data = await axios.delete(
+        `https://deserted-workable-olive.glitch.me/memes/${payload}`
+      );
       console.log(data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
@@ -55,7 +62,7 @@ export const __memeUpdate = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const data = await axios.patch(
-        `http://localhost:3001/memes/${payload.id}`,
+        `https://deserted-workable-olive.glitch.me/memes/${payload.id}`,
         payload.edit
       );
       console.log(payload);

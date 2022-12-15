@@ -8,11 +8,6 @@ import { __memeAdd } from "../../redux/modules/homeMod";
 import { memo } from "react";
 
 const Home_input_form = () => {
-  //const fetchmemes = async () => {
-  //  const { data } = await axios.get("http://localhost:3001/memes");
-  //  setMemes(data);
-  // };
-
   const [memes, setMemes] = useState("", []);
 
   const [title, setTitle] = useState("", []);
@@ -27,7 +22,7 @@ const Home_input_form = () => {
 
     dispatch(
       __memeAdd({
-        id: memes.length + 1,
+        id: 0,
         title: title,
         url: url,
         comments: [
@@ -49,10 +44,6 @@ const Home_input_form = () => {
       setMemes(res);
     });
   }, [dispatch]);
-
-  //useEffect(() => {
-  //  fetchmemes();
-  // }, []);
 
   return (
     <Container>
